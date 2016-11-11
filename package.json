@@ -1,0 +1,33 @@
+{
+  "name": "hang-ten",
+  "version": "0.0.1",
+  "description": "Scheduling layer for nodejs",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brewsoftware/hang-ten.git"
+  },
+  "author": "Jason Turner",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/brewsoftware/hang-ten/issues"
+  },
+  "homepage": "https://github.com/brewsoftware/hang-ten#readme",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "feathers": "^2.0.2",
+    "feathers-authentication": "^0.7.11",
+    "feathers-errors": "^2.5.0",
+    "feathers-hooks": "^1.6.1",
+    "feathers-localstorage": "^0.5.0",
+    "feathers-rest": "^1.5.2",
+    "feathers-socketio": "^1.4.2",
+    "localstorage-memory": "^1.0.2",
+    "node-cron": "^1.1.2",
+    "node-json-db": "^0.7.3",
+    "queue": "^4.0.0"
+  }
+}
