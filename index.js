@@ -1,5 +1,4 @@
-
-var users  = require('./services/users');
+var users = require('./services/users');
 
 const feathers = require('feathers');
 const rest = require('feathers-rest');
@@ -9,6 +8,7 @@ const bodyParser = require('body-parser');
 const handler = require('feathers-errors/handler');
 
 // service references
+const authentication = require('feathers-authentication');
 
 
 const jobs = require('./services/jobs');
@@ -17,18 +17,6 @@ const content = require('./services/content');
 // A Feathers app is the same as an Express app
 const app = feathers();
 
-console.log(JSON.stringify(users));
-// initialize users service
-users.init(app);
-jobs.init(app);
-content.init(app);
-
-
-// Parse HTTP JSON bodies
-app.use(bodyParser.json());
-
-// Parse URL-encoded params
-app.use(bodyParser.urlencoded({ extended: true }));
 
 // Register hooks module
 app.configure(hooks());
@@ -39,10 +27,29 @@ app.configure(rest());
 // Configure Socket.io real-time APIs
 app.configure(socketio());
 
+
+
+// initialize users service
+users.init(app);
+jobs.init(app);
+content.init(app);
+
 // Register our authentication plugin
-app.configure(authentication({token: {
-    secret: '123456789asdfg' // TODO: Move into settings file
-  } }));
+/*
+app.service('users').configure(authentication({
+    token: {
+        secret: '123456789asdfg' // TODO: Move into settings file
+    }
+}));
+*/
+// Parse HTTP JSON bodies
+app.use(bodyParser.json());
+
+// Parse URL-encoded params
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
+
 
 // Register a nicer error handler than the default Express one
 app.use(handler());
