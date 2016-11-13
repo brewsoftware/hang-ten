@@ -1,0 +1,13 @@
+{
+  "name": "react-redux-typescript-babel-webpack-seed",
+  "globalDependencies": {
+    "jasmine": "github:DefinitelyTyped/DefinitelyTyped/jasmine/jasmine.d.ts",
+    "lodash": "github:DefinitelyTyped/DefinitelyTyped/lodash/lodash.d.ts",
+    "react": "github:DefinitelyTyped/DefinitelyTyped/react/react.d.ts",
+    "react-dom": "github:DefinitelyTyped/DefinitelyTyped/react/react-dom.d.ts",
+    "redux": "github:DefinitelyTyped/DefinitelyTyped/redux/redux.d.ts",
+    "redux-thunk": "github:DefinitelyTyped/DefinitelyTyped/redux-thunk/redux-thunk.d.ts",
+    "whatwg-fetch": "github:DefinitelyTyped/DefinitelyTyped/whatwg-fetch/whatwg-fetch.d.ts",
+    "whatwg-streams": "github:DefinitelyTyped/DefinitelyTyped/whatwg-streams/whatwg-streams.d.ts"
+  }
+}
