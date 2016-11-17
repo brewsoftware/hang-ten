@@ -25,7 +25,7 @@ module.exports = {
     // you won't get detailed messages on React exceptions.
     new webpack.DefinePlugin({
       'process.env': {
-        NODE_ENV: JSON.stringify('production')
+        NODE_ENV: JSON.stringify('development')
       }
     }),
     new HtmlWebpackPlugin({

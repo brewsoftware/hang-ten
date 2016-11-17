@@ -6,9 +6,10 @@
   "scripts": {
     "typings-install": "typings install",
     "package": "webpack",
-    "start-new": "webpack & node index.js",
-    "start": "webpack-dev-server --progress --d --content-base target/out/ --port=8080",
+    "start": "webpack & node index.js",
+    "start-old": "webpack-dev-server --progress --d --content-base target/out/ --port=8080",
     "pretest": "webpack --d --config webpack.test.config.js",
+    "start-test": "webpack --config webpack.test.config.js & node index.js",
     "test": "jasmine-node --matchall --test-dir target/test/"
   },
   "repository": {
@@ -35,7 +36,8 @@
     "nedb": "^1.8.0",
     "node-cron": "^1.1.2",
     "node-json-db": "^0.7.3",
-    "queue": "^4.0.0"
+    "queue": "^4.0.0",
+    "socket.io-client": "^1.5.1"
   },
   "devDependencies": {
     "webpack": "1.12.9",
@@ -51,32 +53,23 @@
     "extract-text-webpack-plugin": "0.8.2",
     "single-module-instance-webpack-plugin": "0.0.3",
     "hanson": "1.1.1",
-
     "typescript": "1.8.10",
     "typings": "1.0.4",
-
     "babel-core": "6.3.26",
     "babel-preset-es2015": "6.9.0",
     "babel-preset-stage-0": "6.5.0",
     "babel-plugin-transform-runtime": "6.9.0",
     "babel-polyfill": "6.9.1",
     "babel-runtime": "6.9.2",
-
     "less": "2.3.1",
-
     "jasmine": "2.4.1",
     "jasmine-node": "1.14.5",
-
     "glob": "7.0.3",
-
     "lodash": "4.13.1",
-
     "react": "0.14.6",
     "react-dom": "0.14.6",
-
     "redux": "3.5.2",
     "redux-thunk": "2.1.0",
-
     "whatwg-fetch": "1.0.0"
   }
 }

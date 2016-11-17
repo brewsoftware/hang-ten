@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {AppModel, appAddLink} from './AppModel';
+import {AppModel, appAddLink,saveFunctionDefinition} from './AppModel';
 import {Link} from './Link';
 
 interface AppProps {
@@ -10,7 +10,8 @@ interface AppProps {
 
 export class App extends React.Component<AppProps, any> {
   state = {
-    userHref: 'http://www.google.com/'
+    userHref: 'http://www.google.com/',
+    functionDef: undefined
   };
 
   onAddLinkClick = e => {
@@ -19,12 +20,23 @@ export class App extends React.Component<AppProps, any> {
       this.props.dispatch(appAddLink(userHref));
     }
   };
-  
+
+  onUpdateDefinition = e=> {
+    let {functionDef} = this.state;
+    if(functionDef){
+      this.props.dispatch(saveFunctionDefinition(functionDef));
+    }
+  };
+
   onInputChange = e => {
     this.setState({userHref: e.target.value})
   };
-  
-  render() {
+
+ onFunctionDefinitionChange = e=> {
+  this.setState({functionDef: e.target.value})
+ };
+
+ render() {
     let {dispatch, model: {links}} = this.props;
     return (
       <div>
@@ -36,6 +48,10 @@ export class App extends React.Component<AppProps, any> {
             </li>
           )}
         </ul>
+        <textarea name="textarea" onChange={this.onFunctionDefinitionChange}></textarea>
+        <br />
+        <button onClick={this.onUpdateDefinition}>Update Definition</button>
+        <br />
         <input type="text"
                value={this.state.userHref}
                onChange={this.onInputChange}/>
