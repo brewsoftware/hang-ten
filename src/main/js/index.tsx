@@ -11,6 +11,11 @@ import {createStore, applyMiddleware, combineReducers} from 'redux';
 import {default as thunk} from 'redux-thunk';
 import {reduceAppModel} from './app/AppModel';
 
+import io from 'socket.io-client';
+import feathers from 'feathers/client';
+import socketio from 'feathers-socketio/client';
+
+// dispatching events from feathers into the store
 
 // Stylesheet is converted to index.css by ExtractTextPlugin defined in Webpack config.
 require('../less/index.less');
@@ -38,3 +43,26 @@ renderApp();
 
 // Schedule application re-render on every action.
 appStore.subscribe(() => setTimeout(renderApp, 0));
+
+
+
+const socket = io('http://localhost:3030/');
+const app = feathers()
+  .configure(socketio(socket));
+
+var jobsService = app.service('jobs');
+
+jobsService.on('created', function(message) {
+    console.log('job created', message);
+  });
+
+jobsService.find({}, function(error, values) {
+      console.log(JSON.stringify(values));
+});
+
+jobsService.create({
+  first: 'test'
+})
+  //messageService.create({
+//    text: 'Message from client'
+//  });

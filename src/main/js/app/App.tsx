@@ -2,6 +2,7 @@ import * as React from 'react';
 import {AppModel, appAddLink,saveFunctionDefinition} from './AppModel';
 import {Link} from './Link';
 
+
 interface AppProps {
   dispatch: Function;
   model: AppModel;
