@@ -1,0 +1,8 @@
+{
+  "resolution": "main",
+  "tree": {
+    "src": "https://raw.githubusercontent.com/DefinitelyTyped/DefinitelyTyped/master/whatwg-streams/whatwg-streams.d.ts",
+    "raw": "github:DefinitelyTyped/DefinitelyTyped/whatwg-streams/whatwg-streams.d.ts",
+    "typings": "https://raw.githubusercontent.com/DefinitelyTyped/DefinitelyTyped/master/whatwg-streams/whatwg-streams.d.ts"
+  }
+}
