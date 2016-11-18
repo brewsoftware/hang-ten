@@ -7,7 +7,7 @@ interface AppProps {
   dispatch: Function;
   model: AppModel;
   errorMessage?: string;
-}
+} 
 
 export class App extends React.Component<AppProps, any> {
   state = {

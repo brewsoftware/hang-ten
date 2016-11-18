@@ -11,9 +11,12 @@ import {createStore, applyMiddleware, combineReducers} from 'redux';
 import {default as thunk} from 'redux-thunk';
 import {reduceAppModel} from './app/AppModel';
 
-import io from 'socket.io-client';
-import feathers from 'feathers/client';
-import socketio from 'feathers-socketio/client';
+const feathers = require('feathers-client')
+const socketio = require('feathers-socketio/client');
+const hooks = require('feathers-hooks');
+const io = require('socket.io-client');
+const rest = require('feathers-rest');
+const bodyParser = require('body-parser');
 
 // dispatching events from feathers into the store
 
@@ -44,25 +47,26 @@ renderApp();
 // Schedule application re-render on every action.
 appStore.subscribe(() => setTimeout(renderApp, 0));
 
+const socket = io('http://localhost:3030');
+var client = feathers()
+//    .configure(feathers.hooks())
+    .configure(feathers.socketio(socket));
 
-
-const socket = io('http://localhost:3030/');
-const app = feathers()
-  .configure(socketio(socket));
-
-var jobsService = app.service('jobs');
+var jobsService = client.service('jobs');
 
 jobsService.on('created', function(message) {
     console.log('job created', message);
   });
 
-jobsService.find({}, function(error, values) {
-      console.log(JSON.stringify(values));
-});
+//jobsService.find({}, function(error, values) {
+//      console.log(JSON.stringify(values));
+//});
 
-jobsService.create({
-  first: 'test'
-})
+client.emit('jobs::create', {
+  "text": "I really have to iron"
+}, (error, message) => {
+  console.log('Todo created', message);
+});
   //messageService.create({
 //    text: 'Message from client'
 //  });
