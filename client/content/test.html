@@ -1,0 +1,17 @@
+<script type="text/javascript" src="/socket.io/socket.io.js"></script>
+<script type="text/javascript" src="//cdn.rawgit.com/feathersjs/feathers-client/v1.1.0/dist/feathers.js"></script>
+<script type="text/javascript">
+  var socket = io('http://localhost:3030/');
+  var client = feathers()
+    .configure(feathers.hooks())
+    .configure(feathers.socketio(socket));
+  var todoService = client.service('jobs');
+
+  todoService.on('created', function(todo) {
+    console.log('Someone created a todo', todo);
+  });
+
+  todoService.create({
+    description: 'Todo from client'
+  });
+</script>

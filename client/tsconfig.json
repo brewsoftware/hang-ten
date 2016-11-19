@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "jsx": "react",
+    "sourceMap": true,
+    "pretty": true
+  },
+  "compileOnSave": false,
+  "files": [
+    "./typings/index.d.ts",
+    "./src/main/typings/index.d.ts"
+  ]
+}

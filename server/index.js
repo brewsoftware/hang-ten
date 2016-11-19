@@ -6,10 +6,10 @@ const socketio = require('feathers-socketio');
 const hooks = require('feathers-hooks');
 const bodyParser = require('body-parser');
 const handler = require('feathers-errors/handler');
+const cors = require('cors');
 
 // service references
 const authentication = require('feathers-authentication');
-
 
 const jobs = require('./services/jobs');
 const content = require('./services/content');
@@ -27,7 +27,8 @@ app.configure(rest());
 // Configure Socket.io real-time APIs
 app.configure(socketio());
 
-
+app.options('*', cors())
+  .use(cors());
 
 // initialize users service
 users.init(app);

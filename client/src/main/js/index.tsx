@@ -11,16 +11,11 @@ import {createStore, applyMiddleware, combineReducers} from 'redux';
 import {default as thunk} from 'redux-thunk';
 import {reduceAppModel} from './app/AppModel';
 
-const feathers = require('feathers-client')
-const socketio = require('feathers-socketio/client');
-const hooks = require('feathers-hooks');
-const io = require('socket.io-client');
-const rest = require('feathers-rest');
-const bodyParser = require('body-parser');
+//import 'babel-polyfill';
+const io = require( 'socket.io-client/socket.io');
+const feathers = require('feathers/client');
+const socketio = require('feathers-socketio/client')
 
-// dispatching events from feathers into the store
-
-// Stylesheet is converted to index.css by ExtractTextPlugin defined in Webpack config.
 require('../less/index.less');
 
 let config:any = require('./config.json');
@@ -49,8 +44,8 @@ appStore.subscribe(() => setTimeout(renderApp, 0));
 
 const socket = io('http://localhost:3030');
 var client = feathers()
-//    .configure(feathers.hooks())
-    .configure(feathers.socketio(socket));
+//    .configure(ft.hooks())
+    .configure(socketio(socket));
 
 var jobsService = client.service('jobs');
 
@@ -58,15 +53,8 @@ jobsService.on('created', function(message) {
     console.log('job created', message);
   });
 
-//jobsService.find({}, function(error, values) {
-//      console.log(JSON.stringify(values));
-//});
-
 client.emit('jobs::create', {
   "text": "I really have to iron"
 }, (error, message) => {
   console.log('Todo created', message);
 });
-  //messageService.create({
-//    text: 'Message from client'
-//  });
