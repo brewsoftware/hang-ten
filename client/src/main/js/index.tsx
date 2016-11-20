@@ -12,9 +12,9 @@ import {default as thunk} from 'redux-thunk';
 import {reduceAppModel} from './app/AppModel';
 
 //import 'babel-polyfill';
-const io = require( 'socket.io-client/socket.io');
-const feathers = require('feathers/client');
-const socketio = require('feathers-socketio/client')
+declare const io; // = require( 'socket.io-client/socket.io');
+declare const feathers; // = require('feathers-client');
+//const socketio = require('feathers-socketio/client')
 
 require('../less/index.less');
 
@@ -45,7 +45,7 @@ appStore.subscribe(() => setTimeout(renderApp, 0));
 const socket = io('http://localhost:3030');
 var client = feathers()
 //    .configure(ft.hooks())
-    .configure(socketio(socket));
+    .configure(feathers.socketio(socket));
 
 var jobsService = client.service('jobs');
 
@@ -53,7 +53,7 @@ jobsService.on('created', function(message) {
     console.log('job created', message);
   });
 
-client.emit('jobs::create', {
+jobsService.create( {
   "text": "I really have to iron"
 }, (error, message) => {
   console.log('Todo created', message);
