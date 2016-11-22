@@ -5,12 +5,11 @@
   "main": "index.js",
   "scripts": {
     "typings-install": "typings install",
-    "package": "webpack",
-    "start": "node index.js",
-    "start-old": "webpack-dev-server --progress --d --content-base target/out/ --port=8080",
-    "pretest": "webpack --d --config webpack.test.config.js",
-    "start-test": "webpack --config webpack.test.config.js & node index.js",
-    "test": "jasmine-node --matchall --test-dir target/test/"
+    "server": "node index.js",
+    "server:package": "webpack",
+    "server:pretest": "webpack --d --config webpack.test.config.js",
+    "server:start-test": "webpack --config webpack.test.config.js & node index.js",
+    "server:test": "jasmine-node --matchall --test-dir target/test/"
   },
   "repository": {
     "type": "git",

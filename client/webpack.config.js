@@ -29,8 +29,8 @@ module.exports = {
       }
     }),
     new HtmlWebpackPlugin({
-      template: './src/main/index.html',
-      minify: {collapseWhitespace: true}
+      template: './src/main/index.ejs',
+      minify: {collapseWhitespace: false}
     }),
     new ExtractTextPlugin('[name].css'),
     new SingleModuleInstancePlugin()
