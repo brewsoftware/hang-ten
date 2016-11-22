@@ -5,12 +5,11 @@
   "main": "index.js",
   "scripts": {
     "typings-install": "typings install",
-    "package": "webpack",
-    "start": "webpack-dev-server --content-base ./content",
-    "start-old": "webpack-dev-server --progress --d --content-base target/out/ --port=8080",
-    "pretest": "webpack --d --config webpack.test.config.js",
-    "start-test": "webpack --config webpack.test.config.js & node index.js",
-    "test": "jasmine-node --matchall --test-dir target/test/"
+    "client": "webpack-dev-server --content-base ./content",
+    "client:package": "webpack",
+    "client:pretest": "webpack --d --config webpack.test.config.js",
+    "client:test": "webpack --config webpack.test.config.js & node index.js",
+    "client:test": "jasmine-node --matchall --test-dir target/test/"
   },
   "repository": {
     "type": "git",
@@ -39,8 +38,7 @@
     "redux": "^3.6.0",
     "redux-thunk": "^2.1.0",
     "socket.io": "^1.5.1",
-    "socket.io-client": "^1.5.1",
-    "tls": "0.0.1"
+    "socket.io-client": "^1.5.1"
   },
   "devDependencies": {
     "babel-core": "6.3.26",
@@ -55,7 +53,7 @@
     "glob": "7.0.3",
     "hanson": "1.1.1",
     "hson-loader": "1.0.0",
-    "html-webpack-plugin": "1.6.1",
+    "html-webpack-plugin": "^2.24.1",
     "jasmine": "2.4.1",
     "jasmine-node": "1.14.5",
     "less": "2.3.1",
@@ -67,8 +65,8 @@
     "ts-loader": "0.8.2",
     "typescript": "1.8.10",
     "typings": "1.0.4",
-    "webpack": "1.12.9",
-    "webpack-dev-server": "^1.12.0",
+    "webpack": "^1.13.3",
+    "webpack-dev-server": "^1.16.2",
     "whatwg-fetch": "1.0.0"
   }
 }
