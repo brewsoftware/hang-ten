@@ -131,6 +131,8 @@ function onListening() {
 
   debug(`Server listening on ${bind}`);
   logger.info(`Server listening on ${bind}`, { tags: 'server' });
+
+  
 }
 
 // Exit process

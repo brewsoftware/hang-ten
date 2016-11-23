@@ -17,6 +17,7 @@ const socketio = require('feathers-socketio');
 const logger = require('./utils/loggerProduction');
 const middleware = require('./middleware');
 const services = require('./services');
+const tasks = require('./tasks');
 
 debug('Required');
 
@@ -58,7 +59,8 @@ const app = feathers()
   .configure(socketio())
   .configure(services)
   .configure(middleware)
-  .configure(authentication);
+  .configure(authentication)
+  .configure(tasks);
 
 module.exports = app;
 

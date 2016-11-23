@@ -9,6 +9,7 @@ const authentication = require('./authentication');
 const verifyReset = require('./verifyReset');
 const user = require('./user');
 const message = require('./message');
+const server = require('./server');
 const tryHook = require('./hooks/tryHook');
 const logger = require('../utils/loggerProduction');
 
@@ -22,7 +23,7 @@ module.exports = function () { // 'function' needed as we use 'this'
   app.configure(verifyReset);
   app.configure(user);
   app.configure(message);
-
+  app.configure(server);
   // get client config file
   app.use('/config', {
     get() {
