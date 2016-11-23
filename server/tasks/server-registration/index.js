@@ -2,24 +2,24 @@
 // Ensure that we have fingerprinted outselves.
 module.exports = function() {
     const app = this;
-    var messageService = app.service('server');
+    var server = app.service('server');
     const logger = require('../../utils/loggerProduction');
-    messageService.find({
+    server.find({
         query: {
             type: 'fingerprint'
         }
     }).then((result) => {
         if (result.data.length === 0) {
-            messageService.create({
+            servers.create({
                 type: 'fingerprint'
             });
-            messageService.find({
+            servers.find({
                 query: {
                     type: 'fingerprint'
                 }
             }).then((result) => {
                 if (result.data.length === 0) {
-                    messageService.create({
+                    servers.create({
                         type: 'fingerprint'
                     });
                 } else {

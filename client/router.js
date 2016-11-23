@@ -24,6 +24,7 @@ import UserProfileChange from './screens/Users/UserProfileChange';
 import UserRolesChange from './screens/Users/UserRolesChange';
 import UserProfile from './screens/Users/UserProfile';
 import UserSignInPending from './screens/Users/UserSignInPending';
+import Messages from './screens/App/Messages';
 import App from './screens/App';
 
 // Authentication Higher Order Components to wrap route components.
@@ -83,15 +84,12 @@ export default function (store, history) {
             <Route path="/user/verify/:token" component={UserSignUpValidateEmail} />
             <Route path="/user/forgotpwdsendemail" component={UserForgotPwdSendEmail} />
             <Route path="/user/forgot/:token" component={UserForgotPwdReset} />
-            <Route path="/user/passwordchange"
-              component={UserIsAuthenticated(UserPasswordChange)}
-            />
+            <Route path="/user/passwordchange" component={UserIsAuthenticated(UserPasswordChange)} />
             <Route path="/user/emailchange" component={UserIsAuthenticated(UserEmailChange)} />
             <Route path="/user/profilechange" component={UserIsAuthenticated(UserProfileChange)} />
-            <Route path="/user/roleschange"
-              component={UserIsAuthenticated(UserIsAdmin(UserRolesChange))}
-            />
+            <Route path="/user/roleschange" component={UserIsAuthenticated(UserIsAdmin(UserRolesChange))} />
             <Route path="/user/profile" component={UserIsAuthenticated(UserProfile)} />
+            <Route path="/messages" component={UserIsAuthenticated(Messages)} />
           </Route>
         </Router>
       </Provider>

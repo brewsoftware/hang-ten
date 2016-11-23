@@ -49,6 +49,10 @@ const makeBarButtons = (screen) => {
             primaryText="Sign out"
           />
           <MenuItem
+              containerElement={<Link to="/messages" />}
+              primaryText="Messages"
+          />
+          <MenuItem
             containerElement={<Link to="/user/profile" />}
             primaryText="User profile"
           />
