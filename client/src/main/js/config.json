@@ -1,4 +1,0 @@
-{
-  // Comments are ok here due to hanson Webpack loader.
-  "href": "http://localhost:8080/"
-}

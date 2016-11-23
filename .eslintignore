@@ -1,14 +1,9 @@
 
-### Specific to repo, do not use for fork ###
+### Specific to project ##########
 
-# data folders
-data/
-data-dev/
-# log folders
-logs/
-logs-dev/
-# builds
-public/dist/
+# Results of builds
+lib
+dist
 
 ### Standard .gitignore ##########
 
@@ -43,6 +38,7 @@ tmp/
 unused/
 
 ## Logs
+logs/
 *.log
 npm-debug.log*
 
