@@ -4,16 +4,12 @@ const verifyHooks = require('feathers-service-verify-reset').hooks;
 const hooks  = require('feathers-hooks');
 exports.before = {
   all: [
-    auth.verifyToken(),
-    auth.populateUser(),
   ],
   find: [
-    auth.restrictToAuthenticated(),
-    verifyHooks.restrictToVerified(),
+
   ],
   get: [
-    auth.restrictToAuthenticated(),
-    verifyHooks.restrictToVerified(),
+    
   ],
   create: [
     hooks.disable('external')

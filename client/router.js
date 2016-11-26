@@ -24,8 +24,8 @@ import UserProfileChange from './screens/Users/UserProfileChange';
 import UserRolesChange from './screens/Users/UserRolesChange';
 import UserProfile from './screens/Users/UserProfile';
 import UserSignInPending from './screens/Users/UserSignInPending';
-import Messages from './screens/App/Messages';
 import App from './screens/App';
+import Messages from './screens/Messages/';
 
 // Authentication Higher Order Components to wrap route components.
 const UserIsAuthenticated = UserAuthWrapper({

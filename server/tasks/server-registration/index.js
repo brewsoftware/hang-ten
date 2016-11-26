@@ -9,17 +9,17 @@ module.exports = function() {
             type: 'fingerprint'
         }
     }).then((result) => {
-        if (result.data.length === 0) {
-            servers.create({
+        if (result.data === undefined || result.data.length === 0) {
+            server.create({
                 type: 'fingerprint'
             });
-            servers.find({
+            server.find({
                 query: {
                     type: 'fingerprint'
                 }
             }).then((result) => {
                 if (result.data.length === 0) {
-                    servers.create({
+                    server.create({
                         type: 'fingerprint'
                     });
                 } else {
