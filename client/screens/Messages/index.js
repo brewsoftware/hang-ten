@@ -1,52 +1,67 @@
-
-import React, { PropTypes, Component } from 'react';
+import React, {PropTypes,Component} from 'react';
 import AppNavBar from '../App/components/AppNavBar';
-import feathers from '../../feathers';
-import { connect } from 'react-redux';
+import {feathersServices} from '../../feathers';
+import app from '../../feathers';
+import {connect} from 'react-redux';
+import {List,ListItem,makeSelectable} from 'material-ui/List';
+import Subheader from 'material-ui/Subheader';
 
 const handleSubmit = () => new Promise((resolve) => resolve());
 const mapStateToProps = (state) => {
-  // TODO: Store reference or dispatch function?
-  return  {message:state.messages};
+    // TODO: Store reference or dispatch function?
+    return {
+        message: state.messages
+    };
 };
-const mapDispatchToProps = (dispatch) => {
-  // TODO: Better store reference
-  const messageService = app.service('messages');
-
-  messageService.find({ query: {} }, (errors, messages) => console.log('messages list', messages));
-
+var dispatch;
+const mapDispatchToProps = (dispatchFunction) => {
+    dispatch = dispatchFunction;
+    dispatch(feathersServices.messages.find({
+        query: {
+            $sort: {
+                time: -1
+            }
+        }
+    }));
+    return {};
 }
+
 class Messages extends Component {
+    componentDidMount() {
+        app.service("messages").on('created', data => {
+            dispatch(feathersServices.messages.find({
+                query: {
+                    $sort: {
+                        time: -1
+                    }
+                }
+            }));
+        });
+    }
 
+    componentWillUnmount() {
+        app.service("messages").off('created', () => {});
+    }
 
-  componentDidMount() {
-//    store.dispatch(feathersServices.config.get())
-//      .then(res => {
-    const messageService = app.service('messages');
-    // TODO: Implement paging around each message.
-    // TODO: DIspatch a set event and a created.
-    messageService.on('created', message => console.log('Someone created a message', message));
+    render() {
+        var items = < div > < /div>;
+        if (this.props.message.queryResult) {
+            items = this.props.message.queryResult.data.map( (data, key) => <ListItem value={key} key={key}
+                primaryText = {data.time} />);
+            }
+            return (
+              <div>
+                <AppNavBar label="Messages" screen="app/messages" />
+                <h1> Recent Messages </h1>
+                <div>
+                  {items}
+                </div>
+              </div>
+            )
+        }
+    }
 
-  }
-
-  componentWillUnmount(){
-    const messageService = app.service('messages');
-    messageService.off('created');
-  }
-  render() {
-    return(
-      <div>
-        <AppNavBar label="App" screen="app/main" />
-        <h1>The App 2</h1>
-        <div>
-        {JSON.stringify(this.props.message)}
-        </div>
-      </div>
-    )
-  }
-}
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Messages);
+    export default connect(
+        mapStateToProps,
+        mapDispatchToProps
+    )(Messages);

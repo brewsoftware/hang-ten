@@ -12,9 +12,12 @@ module.exports = function(){
   heartBeatJob = schedule.scheduleJob('15 * * * * *', function(){
     // pump a message over to the messages API that we can pick up on the client.
     logger.info('Heart Beat');
-
-    let message = 'Heart Beat: ' + moment().format();
-    messages.create({message:message});
+    messages.create(
+      {
+        message: "Heart Beat",
+        time: moment().format()
+      }
+    );
   });
 
   // cleanup success messages after several days

@@ -45,8 +45,8 @@ const makeBarButtons = (screen) => {
           anchorOrigin={{ horizontal: 'right', vertical: 'top' }}
         >
           <MenuItem
-            containerElement={<Link to="/user/signin" />}
-            primaryText="Sign out"
+              containerElement={<Link to="/app" />}
+              primaryText="Home"
           />
           <MenuItem
               containerElement={<Link to="/messages" />}
@@ -56,12 +56,37 @@ const makeBarButtons = (screen) => {
             containerElement={<Link to="/user/profile" />}
             primaryText="User profile"
           />
+          <MenuItem
+            containerElement={<Link to="/user/signin" />}
+            primaryText="Sign out"
+          />
         </IconMenu>
       );
 
     default: {
       return (
-        <div />
+        <IconMenu
+          iconButtonElement={<IconButton><MoreVertIcon /></IconButton>}
+          targetOrigin={{ horizontal: 'right', vertical: 'top' }}
+          anchorOrigin={{ horizontal: 'right', vertical: 'top' }}
+        >
+          <MenuItem
+              containerElement={<Link to="/app" />}
+              primaryText="Home"
+          />
+          <MenuItem
+              containerElement={<Link to="/messages" />}
+              primaryText="Messages"
+          />
+          <MenuItem
+            containerElement={<Link to="/user/profile" />}
+            primaryText="User profile"
+          />
+          <MenuItem
+            containerElement={<Link to="/user/signin" />}
+            primaryText="Sign out"
+          />
+        </IconMenu>
       );
     }
   }
