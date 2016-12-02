@@ -58,10 +58,16 @@ debug('Require app');
 const app = require('./app');
 
 debug('Start server');
+
 const server = app.listen(port)
   .on('error', onError)
   .on('listening', onListening);
 
+const pouchServer = require('./pouch');
+// Configure pouch server according to the above
+const pouch = pouchServer.listen(port + 1, function() {
+  logger.info((new Date()) + ' Server is listening on', server.address());
+});
 // Handle uncaught exceptions
 // Consider enhancements at: https://coderwall.com/p/4yis4w/node-js-uncaught-exceptions
 function handleUncaughtException() {
@@ -132,7 +138,7 @@ function onListening() {
   debug(`Server listening on ${bind}`);
   logger.info(`Server listening on ${bind}`, { tags: 'server' });
 
-  
+
 }
 
 // Exit process

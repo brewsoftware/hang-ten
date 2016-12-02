@@ -19,6 +19,11 @@ const middleware = require('./middleware');
 const services = require('./services');
 const tasks = require('./tasks');
 
+const http = require('http');
+const PouchDB = require('pouchdb');
+const PouchSync = require('pouch-websocket-sync');
+
+
 debug('Required');
 
 const app = feathers()
@@ -63,6 +68,7 @@ const app = feathers()
   .configure(tasks);
 
 module.exports = app;
+
 
 // Helpers
 
