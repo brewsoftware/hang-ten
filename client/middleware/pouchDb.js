@@ -1,6 +1,7 @@
 import PouchDB from 'pouchdb'
 import PouchSync from 'pouch-websocket-sync'
-import * as types from './actions';
+import * as types from '../constants/actions';
+
 import PouchMiddleware from 'pouch-redux-middleware'
 
 const syncEvents = ['change', 'paused', 'active', 'denied', 'complete', 'error'];
