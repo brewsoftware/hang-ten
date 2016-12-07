@@ -5,6 +5,7 @@ import app from '../../feathers';
 import {connect} from 'react-redux';
 import {List,ListItem,makeSelectable} from 'material-ui/List';
 import Subheader from 'material-ui/Subheader';
+import {addMessage} from '../../middleware/actions';
 
 const handleSubmit = () => new Promise((resolve) => resolve());
 const mapStateToProps = (state) => {
@@ -16,38 +17,23 @@ const mapStateToProps = (state) => {
 var dispatch;
 const mapDispatchToProps = (dispatchFunction) => {
     dispatch = dispatchFunction;
-    dispatch(feathersServices.messages.find({
-        query: {
-            $sort: {
-                time: -1
-            }
-        }
-    }));
     return {};
 }
 
 class Messages extends Component {
     componentDidMount() {
-        app.service("messages").on('created', data => {
-            dispatch(feathersServices.messages.find({
-                query: {
-                    $sort: {
-                        time: -1
-                    }
-                }
-            }));
-        });
+      dispatch(addMessage('Component mounted'));
     }
 
     componentWillUnmount() {
-        app.service("messages").off('created', () => {});
+
     }
 
     render() {
-        var items = < div > < /div>;
-        if (this.props.message.queryResult) {
-            items = this.props.message.queryResult.data.map( (data, key) => <ListItem value={key} key={key}
-                primaryText = {data.time} />);
+        var items = <div></div>;
+        if (this.props.message) {
+            items = this.props.message.map( (data, key) => <ListItem value={key} key={key}
+                primaryText = {data.text} />);
             }
             return (
               <div>

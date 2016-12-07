@@ -3,6 +3,7 @@ import { createStore, combineReducers, compose, applyMiddleware } from 'redux';
 
 import reducers from './reducers';
 import middleware from './middleware';
+import configMiddleware from './middleware/pouchDb';
 import PouchDB from 'pouchdb';
 import PouchSync from 'pouch-websocket-sync';
 

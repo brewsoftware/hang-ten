@@ -7,7 +7,8 @@ import PouchMiddleware from 'pouch-redux-middleware'
 const syncEvents = ['change', 'paused', 'active', 'denied', 'complete', 'error'];
 const clientEvents = ['connect', 'disconnect', 'reconnect'];
 
-export default function configureStore(store) {
+const pouchMiddleware = store => next => action => {
+
     const db = new PouchDB('messages');
 
     const syncClient = PouchSync.createClient();
@@ -17,7 +18,7 @@ export default function configureStore(store) {
     on('error', function(err) {
         console.error(err);
     }).sync(db, {
-        remoteName: 'messages-server',
+        remoteName: 'data/pouch-messages',
     });
 
     syncEvents.forEach(function(event) {
@@ -39,7 +40,7 @@ export default function configureStore(store) {
     });
 
 
-    const pouchMiddleware = PouchMiddleware({
+    return PouchMiddleware({
         path: '/messages',
         db,
         actions: {
@@ -57,8 +58,8 @@ export default function configureStore(store) {
             }),
         }
     });
-    return pouchMiddleware;
 }
+export default pouchMiddleware;
 
 /*
     const createStoreWithMiddleware = applyMiddleware(pouchMiddleware)(createStore)
