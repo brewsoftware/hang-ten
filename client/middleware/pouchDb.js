@@ -7,39 +7,39 @@ import PouchMiddleware from 'pouch-redux-middleware'
 const syncEvents = ['change', 'paused', 'active', 'denied', 'complete', 'error'];
 const clientEvents = ['connect', 'disconnect', 'reconnect'];
 
+var db = new PouchDB('messages');
+
+const syncClient = PouchSync.createClient();
+
+const sync = syncClient.connect('ws://localhost:3031').sync(db, {
+    remoteName: "data/pouch-messages",
+    credentials: { token: 'some token'}
+}).on('error', function(err) {
+       console.error(err);
+    });
+var theStore;
+  syncEvents.forEach(function(event) {
+      sync.on(event, function() {
+          theStore.dispatch({
+              type: types.SET_SYNC_STATE,
+              text: event
+          });
+      })
+  });
+
+  clientEvents.forEach(function(event) {
+      syncClient.on(event, function() {
+          theStore.dispatch({
+              type: types.SET_SYNC_STATE,
+              text: event
+          });
+      })
+  });
+
+
 const pouchMiddleware = store => next => action => {
 
-    const db = new PouchDB('messages');
-
-    const syncClient = PouchSync.createClient();
-
-    const sync = syncClient.
-    connect('ws://localhost:3031').
-    on('error', function(err) {
-        console.error(err);
-    }).sync(db, {
-        remoteName: 'data/pouch-messages',
-    });
-
-    syncEvents.forEach(function(event) {
-        sync.on(event, function() {
-            store.dispatch({
-                type: types.SET_SYNC_STATE,
-                text: event
-            });
-        })
-    });
-
-    clientEvents.forEach(function(event) {
-        syncClient.on(event, function() {
-            store.dispatch({
-                type: types.SET_SYNC_STATE,
-                text: event
-            });
-        })
-    });
-
-
+theStore = store;
     return PouchMiddleware({
         path: '/messages',
         db,
@@ -59,6 +59,8 @@ const pouchMiddleware = store => next => action => {
         }
     });
 }
+
+
 export default pouchMiddleware;
 
 /*
