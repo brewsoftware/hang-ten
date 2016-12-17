@@ -8,7 +8,8 @@ const moment = require('moment');
 // Web Socket Server
 
 
-const db =new PouchDB('data/pouch-messages') ;
+const db = new PouchDB('datapouchmessages') ;
+
 db.post({
   title: 'Startup',
   timespamp: moment().format()
@@ -35,7 +36,7 @@ function listAllDocs(){
   });
 }
 function onRequest(credentials, dbName, callback) {
-  if (dbName == 'data/pouch-messages') {
+  if (dbName == 'datapouchmessages') {
     logger.warn("==================");
     logger.warn(dbName);
     listAllDocs();

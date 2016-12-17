@@ -10,10 +10,11 @@ import { browserHistory } from 'react-router';
 import loggerBasic from './loggerBasic'; // eslint-disable-line no-unused-vars
 
 export default [
-  pouchMiddleware,
+
   reduxThunk, // Thunk middleware for Redux
   reduxMulti, // Dispatch multiple actions
   reduxPromiseMiddleware(), // Resolve, reject promises with conditional optimistic updates
   routerMiddleware(browserHistory), // !! IMPORTANT for location.href changes
+  pouchMiddleware,
   loggerBasic, // A basic middleware logger
 ];

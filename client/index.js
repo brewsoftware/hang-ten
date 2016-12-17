@@ -2,7 +2,7 @@
 import makeDebug from 'debug';
 import { browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
-
+import {configSync} from './middleware/pouchDb';
 
 import configureStore from './store';
 import { feathersServices, feathersAuthentication } from './feathers'; // does feathers init
@@ -20,6 +20,7 @@ console.log(`..This bundle was built for the ${nodeEnv} env.`); // eslint-disabl
 
 // Initialize Redux
 const store = configureStore();
+configSync(store);
 const history = syncHistoryWithStore(browserHistory, store);
 
 // Handle uncaught exceptions.

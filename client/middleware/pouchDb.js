@@ -3,12 +3,39 @@ import PouchDB from 'pouchdb'
 import * as types from '../constants/actions';
 const moment = require('moment');
 import PouchMiddleware from 'pouch-redux-middleware'
-
+import PouchSync from 'pouch-websocket-sync'
 const syncEvents = ['change', 'paused', 'active', 'denied', 'complete', 'error'];
 const clientEvents = ['connect', 'disconnect', 'reconnect'];
 
-var db = new PouchDB('messages');
+var db = new PouchDB('messages')
 
+export function configSync(store){
+  const syncClient = PouchSync.createClient();
+
+  const sync = syncClient.
+    connect('ws://localhost:3031').
+    on('error', function(err) {
+      console.log(err);
+    }).
+    sync(db, {
+      remoteName: 'datapouchmessages',
+      credentials: '1234xyz'
+    });
+
+  // Dispatch server events to the client.
+  syncEvents.forEach(function(event) {
+    sync.on(event, function() {
+      store.dispatch({type: types.SET_SYNC_STATE, text: event});
+    })
+  });
+  // Log client events back to the server
+  clientEvents.forEach(function(event) {
+    syncClient.on(event, function() {
+      store.dispatch({type: types.SET_SYNC_STATE, text: event});
+    })
+  });
+
+}
 const pouchMiddleware =  PouchMiddleware({
         path: '/messages',
         db,
