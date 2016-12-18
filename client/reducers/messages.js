@@ -15,11 +15,12 @@ export default function MESSAGES(state = initialState, action) {
       ]
 
     case INSERT_MESSAGE:
-      return [
+    {
+       return [
         action.MESSAGE,
         ...state
       ]
-
+    }
     case DELETE_MESSAGE:
       return state.filter(MESSAGE =>
         MESSAGE._id !== action.id

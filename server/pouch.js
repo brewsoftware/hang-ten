@@ -8,41 +8,13 @@ const moment = require('moment');
 // Web Socket Server
 
 
-const db = new PouchDB('datapouchmessages') ;
+const messagesDb = new PouchDB('datapouchmessages') ;
 
-db.post({
-  title: 'Startup',
-  timespamp: moment().format()
-}).then(function (response) {
-  logger.info("********response***********");
-  logger.info(response);
-  // handle response
-}).catch(function (err) {
-  logger.info("*********error**********");
-  logger.error(err);
-});
-
-function listAllDocs(){
-
-  db.allDocs({
-    include_docs: true,
-    attachments: true
-  }).then(function (result) {
-    logger.info("********response***********");
-    logger.info(result);
-  }).catch(function (err) {
-    logger.info("*********error**********");
-    logger.error(err);
-  });
-}
 function onRequest(credentials, dbName, callback) {
   if (dbName == 'datapouchmessages') {
-    logger.warn("==================");
-    logger.warn(dbName);
     listAllDocs();
-    callback(null, db);
+    callback(null, messagesDb);
   } else {
-    logger.error("!!!!!!!!!!!!!!!!!!!");
     callback(new Error('database not allowed'));
   }
 }
@@ -50,10 +22,9 @@ function onRequest(credentials, dbName, callback) {
 const server = http.createServer();
 const wss = PouchSync.createServer(server, onRequest);
 wss.on('error', function(err) {
-  logger.error("*******************");
   logger.error(err.stack);
 });
 
 
 
-module.exports = server;
+module.exports = {server,messagesDb};

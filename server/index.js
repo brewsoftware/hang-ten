@@ -63,11 +63,7 @@ const server = app.listen(port)
   .on('error', onError)
   .on('listening', onListening);
 
-const pouchServer = require('./pouch');
-// Configure pouch server according to the above
-const pouch = pouchServer.listen(port + 1, function() {
-  logger.info((new Date()) + ' Pouch Server is listening on', server.address()+1);
-});
+
 // Handle uncaught exceptions
 // Consider enhancements at: https://coderwall.com/p/4yis4w/node-js-uncaught-exceptions
 function handleUncaughtException() {

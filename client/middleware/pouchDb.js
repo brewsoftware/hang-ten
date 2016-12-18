@@ -46,11 +46,11 @@ const pouchMiddleware =  PouchMiddleware({
             }},
             insert: message => {return {
                 type: types.INSERT_MESSAGE,
-                message: message
+                MESSAGE: message
             }},
             update: message => {return {
                 type: types.UPDATE_MESSAGE,
-                message: message
+                MESSAGE: message
             }},
         }
     });
