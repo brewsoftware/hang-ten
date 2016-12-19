@@ -5,10 +5,10 @@ const heartBeat = require('./heart-beat');
 module.exports = function () { // 'function' needed as we use 'this'
   debug('Config');
   const app = this;
-//  serverRegistration();
+  // serverRegistration();
   heartBeat();
-  //app.configure(serverRegistration);
+  // app.configure(serverRegistration);
 
   // Note: Async polling thread being called
-  //app.configure(heartBeat);
+  // app.configure(heartBeat);
 }
