@@ -2,9 +2,6 @@
 const PouchDB = require('pouchdb');
 
 
-const MessagesDb;
-function Init(){
-  MessagesDb = new PouchDB('pouchdb/datapouchmessages') ;
-}
+const MessagesDb = new PouchDB('datapouchmessages') ;
 
-module.exports = {MessagesDb, Init};
+module.exports = {MessagesDb};

@@ -1,4 +1,4 @@
 
-const {MessagesDb, Init} = require('./MessagesDb');
+const {MessagesDb} = require('./MessagesDb');
 
-module.exports = {MessagesDb, Init};
+module.exports = {MessagesDb};

@@ -12,7 +12,7 @@ module.exports = function(){
 
   heartBeatJob = schedule.scheduleJob('15 * * * * *', function(){
     // pump a message over to the messages API that we can pick up on the client.
-    logger.info('Heart Beat');
+    logger.info('Heart Beat: xxx');
     MessagesDb.post(
       {
         text: "Heart Beat" + moment().format(),
