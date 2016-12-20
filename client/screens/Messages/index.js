@@ -7,6 +7,9 @@ import {List,ListItem,makeSelectable} from 'material-ui/List';
 import Subheader from 'material-ui/Subheader';
 import {addMessage} from '../../middleware/actions';
 
+import { MuiDataTable } from 'mui-data-table';
+
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 const handleSubmit = () => new Promise((resolve) => resolve());
 const mapStateToProps = (state) => {
     // TODO: Store reference or dispatch function?
@@ -14,7 +17,20 @@ const mapStateToProps = (state) => {
         message: state.messages
     };
 };
-var dispatch;
+var dispatch; // TODO: Why isn't this coming through in the context???
+
+const tableConfig = {
+  paginated: true,
+  search: 'text',
+  columns: [
+    { property: '_id', title: 'Id'},
+    { property: 'text', title: 'Description' },
+    { title: 'When', renderAs: function (data) {
+      return `Run at ${data.timestamp}.`;
+    }},
+  ]
+};
+
 const mapDispatchToProps = (dispatchFunction) => {
     dispatch = dispatchFunction;
     return {};
@@ -30,22 +46,20 @@ class Messages extends Component {
     }
 
     render() {
-        var items = <div></div>;
-        if (this.props.message) {
-            items = this.props.message.map( (data, key) => <ListItem value={key} key={key}
-                primaryText = {data.text} />);
-            }
-            return (
-              <div>
-                <AppNavBar label="Messages" screen="app/messages" />
-                <h1> Recent Messages </h1>
-                <div>
-                  {items}
-                </div>
-              </div>
-            )
-        }
+        tableConfig.data  = this.props.message; // data taken from the props
+        return (
+          <div>
+            <AppNavBar label="Messages" screen="app/messages" />
+            <h1> Recent Messages </h1>
+            <div>
+            <MuiThemeProvider>
+              <MuiDataTable config={tableConfig} />
+            </MuiThemeProvider>
+            </div>
+          </div>
+        )
     }
+  }
 
     export default connect(
         mapStateToProps,

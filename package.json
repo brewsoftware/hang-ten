@@ -65,6 +65,7 @@
     "joi": "^9.0.4",
     "moment": "^2.17.0",
     "morgan": "1.7.0",
+    "mui-data-table": "^0.1.5",
     "nedb": "^1.8.0",
     "node-schedule": "^1.2.0",
     "object.assign": "^4.0.4",
