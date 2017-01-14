@@ -42,6 +42,18 @@ module.exports = {
     },
     local: {},
   },
+  parse: {
+    appId: undefined,
+    key: undefined,
+    url: undefined,
+    name: undefined
+  },
+  parseServer: {
+    appId: undefined,
+    key: undefined,
+    url: undefined,
+    name: undefined
+  },
   client: {
     // Name of app
     appName: 'Hang Ten',
