@@ -63,11 +63,6 @@ const server = app.listen(port)
   .on('error', onError)
   .on('listening', onListening);
 
-const {LaunchPouchServer} = require('./pouchserver');
-
-LaunchPouchServer(port + 1);
-
-
 // Handle uncaught exceptions
 // Consider enhancements at: https://coderwall.com/p/4yis4w/node-js-uncaught-exceptions
 function handleUncaughtException() {
