@@ -69,5 +69,4 @@ lib-cov
 coverage
 # nyc test coverage
 .nyc_output
-datapouchmessages/
 config/local-development.js
