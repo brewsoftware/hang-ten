@@ -42,12 +42,6 @@ module.exports = {
     },
     local: {},
   },
-  parse: {
-    appId: undefined,
-    key: undefined,
-    url: undefined,
-    name: undefined
-  },
   parseServer: {
     appId: undefined,
     key: undefined,
@@ -55,6 +49,7 @@ module.exports = {
     name: undefined
   },
   client: {
+
     // Name of app
     appName: 'Hang Ten',
     // Route for app's root.
@@ -138,6 +133,11 @@ module.exports = {
 
   // This is the subset of the config sent to the client
   clientConfig: defer(finalConfig => ({
+    parseClient:{
+      appId: finalConfig.parseServer.appId,
+      url:finalConfig.parseServer.url,
+      name:finalConfig.parseServer.name
+    },
     client: {
       defaultRoute: finalConfig.client.defaultRoute,
     },
