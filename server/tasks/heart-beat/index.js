@@ -1,7 +1,6 @@
 // global var for holding job references for later cancelling
 const schedule = require('node-schedule');
 const moment = require('moment');
-const {MessagesDb} = require('../../pouchdb');
 const Parse = require('parse/node').Parse;
 
 
@@ -21,6 +20,7 @@ module.exports = function(){
     message.message  = 'This is a heart beat';
     message.time = moment().format();
     message.title = 'Heart Beat';
+    message.audianceRole = 'Users';
 
     message.save(null, {
       success:function(msg){

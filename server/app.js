@@ -19,8 +19,6 @@ const middleware = require('./middleware');
 const services = require('./services');
 
 const http = require('http');
-const PouchDB = require('pouchdb');
-const PouchSync = require('pouch-websocket-sync');
 
 
 debug('Required');
