@@ -5,7 +5,6 @@ import reduxThunk from 'redux-thunk';
 import reduxPromiseMiddleware from 'redux-promise-middleware';
 import reduxMulti from 'redux-multi';
 import { routerMiddleware } from 'react-router-redux';
-import pouchMiddleware from './pouchDb';
 import { browserHistory } from 'react-router';
 import loggerBasic from './loggerBasic'; // eslint-disable-line no-unused-vars
 
@@ -15,6 +14,5 @@ export default [
   reduxMulti, // Dispatch multiple actions
   reduxPromiseMiddleware(), // Resolve, reject promises with conditional optimistic updates
   routerMiddleware(browserHistory), // !! IMPORTANT for location.href changes
-  pouchMiddleware,
   loggerBasic, // A basic middleware logger
 ];
