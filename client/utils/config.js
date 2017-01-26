@@ -1,5 +1,6 @@
 
 const randomString = require('./randomString');
+const Parse = require('parse').Parse;
 
 var clientConfig = {}; // eslint-disable-line no-var
 
@@ -18,6 +19,10 @@ module.exports.configLoad = (store, feathersServices) =>
       clientConfig.agent.deviceId = localStorage.deviceId;
       clientConfig.agent.clientBuiltFor =
         __processEnvNODE_ENV__; // eslint-disable-line no-undef, camelcase
+        Parse.serverURL = clientConfig.parseClient.url;
+        Parse.initialize(clientConfig.parseClient.appId);
+
+      console.log(clientConfig);
 
       Object.freeze(clientConfig);
 
