@@ -10,6 +10,8 @@ import {addMessage} from '../../middleware/actions';
 import { MuiDataTable } from 'mui-data-table';
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import {Parse} from 'parse';
+
 const handleSubmit = () => new Promise((resolve) => resolve());
 const mapStateToProps = (state) => {
     // TODO: Store reference or dispatch function?
