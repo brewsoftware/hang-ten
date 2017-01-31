@@ -9,6 +9,8 @@ import { feathersAuthentication }
   from '../../../feathers';
 import usersClientValidations from '../../../../common/helpers/usersClientValidations';
 import Form from './Form';
+import {Parse} from 'parse';
+
 
 const handleSubmit = (values, dispatch) => new Promise((resolve, reject) => {
   dispatch(feathersAuthentication.authenticate(
