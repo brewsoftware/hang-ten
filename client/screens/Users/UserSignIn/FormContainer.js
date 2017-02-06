@@ -5,23 +5,27 @@ import { connect } from 'react-redux';
 import errors from 'feathers-errors';
 
 import { config } from '../../../utils/config';
-import { feathersAuthentication }
-  from '../../../feathers';
 import usersClientValidations from '../../../../common/helpers/usersClientValidations';
 import Form from './Form';
 import {Parse} from 'parse';
 
 
 const handleSubmit = (values, dispatch) => new Promise((resolve, reject) => {
-  dispatch(feathersAuthentication.authenticate(
-    { type: 'local', email: values.email, password: values.password }
-  ))
-    .then(() => resolve())
-    .catch(err => reject(err instanceof errors.BadRequest
-      ? new SubmissionError(Object.assign({}, err.errors, { _error: err.message || '' }))
-      : err
-    ));
-});
+  Parse.User.logIn(values.email, values.password)
+    .then(() =>
+    {
+      dispatch({type:'token', token: {}}});
+        resolve();
+    }
+    )
+    .catch((err) =>
+      {
+        dispatch({
+        type: 'LOGIN_ERROR',
+        text: 'Login Failed'
+        });
+      reject();
+    })});
 
 const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isSignedIn,
@@ -29,7 +33,10 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   handleLogout: () => {
-    dispatch(feathersAuthentication.logout());
+    dispatch({
+      type: 'LOGOUT',
+      text: 'Successful Logout'
+      });
   },
   handleRedirect: () => {
     dispatch(push(ownProps.redirectTo || config.client.defaultRoute));
@@ -44,6 +51,7 @@ export default connect(
   // decorate react component with redux-form
   reduxForm({
     form: 'UserSignIn',
+    isAuthenticated:false,
     // initialValues: { email: 'a@a.com' }, // set initialValues in mapStateToProps for dynamic data
     validate: usersClientValidations.signin,
     // asyncBlurFields: ['email', 'password'],
