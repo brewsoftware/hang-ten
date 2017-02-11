@@ -12,12 +12,11 @@ import {Parse} from 'parse';
 
 const handleSubmit = (values, dispatch) => new Promise((resolve, reject) => {
   Parse.User.logIn(values.email, values.password)
-    .then(() =>
+    .then((result) =>
     {
-      dispatch({type:'token', token: {}}});
-        resolve();
-    }
-    )
+      dispatch(type:"LOGIN");
+      resolve();
+    })
     .catch((err) =>
       {
         dispatch({
@@ -28,7 +27,7 @@ const handleSubmit = (values, dispatch) => new Promise((resolve, reject) => {
     })});
 
 const mapStateToProps = (state) => ({
-  isAuthenticated: state.auth.isSignedIn,
+  isAuthenticated: state.auth.isAuthenticated,
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
