@@ -1,6 +1,6 @@
 import { LOGIN, LOGOUT, LOGIN_ERROR } from '../constants/auth'
 
-const initialState = {isAuthenticated: false};
+const initialState = {isAuthenticated: false,isSignedIn:false};
 
 export default function auth(state = initialState, action) {
   switch (action.type) {
@@ -8,7 +8,8 @@ export default function auth(state = initialState, action) {
     {
       var res =
          {
-           isAuthenticated: true
+           isAuthenticated: true,
+           isSignedIn: true
          }
          return res;
 
