@@ -33,49 +33,43 @@ const tableConfig = {
   ]
 };
 
-const mapDispatchToProps = (dispatchFunction) => {
-    dispatch = dispatchFunction;
-    return {};
-}
+const mapDispatchToProps = (dispatch, ownProps) => ({
+  refresh:(messages) => {
+    dispatch({type: 'MESSAGES_REFRESH', data:messages});
+  },
+  upsert: (message) => {
+    dispatch({type: 'MESSAGES_UPDATE', data:message})
+  },
+  remove: (message) => {
+    dispatche({type:'MESSAGES_DELETE', data:message})
+  }
+});
+
 var subscription;
 var query;
 class Messages extends Component {
 
-    constructor(props) {
-      super(props);
-      this.state = {
-        messages: []
-      };
-    }
-
-    create(message){
-      this.state.messages.push(message);
-      console.log('Create' + message.get('title')); // This should output Mengyan
-      this.state.messages = messages;
-      setState(this.state);
-    }
-
-    remove(message){
-      this.state.messages.pop();
-      console.log('Create' + message.get('title')); // This should output Mengyan
-      this.state.messages = messages;
-      setState(this.state);
-
-    }
-
     componentDidMount() {
-      dispatch(addMessage('Component mounted'));
-
       query = new Parse.Query('Message');
       query.descending("score");
       query.limit(10);
-      var self = this;
-      // create,enter,update,leave,delete
-      subscription.on('create', create);
-      subscription.on('enter', create);
-      subscription.on('leave', remove);
-
+      query.include("score");
+      query.include("test");
+      query.find().then((data) => {
+        this.props.refresh(data);
+      }).catch((err) =>
+      {
+        console.log(err);
+      });
       subscription = query.subscribe();
+
+      // create,enter,update,leave,delete
+      subscription.on('create', this.props.upsert);
+      subscription.on('enter', this.props.upsert);
+      subscription.on('update', this.props.upsert);
+      subscription.on('leave', this.props.remove);
+      subscription.on('delete', this.props.remove);
+
     }
 
     componentWillUnmount() {
@@ -83,15 +77,22 @@ class Messages extends Component {
     }
 
     render() {
-        // tableConfig.data = this.props.message; // data taken from the props
-        tableConfig.data = this.state.messages;
+      const config = {
+        paginated: true,
+        search: 'text',
+        data: this.props.message,
+        columns: [
+          { property: 'text', title: 'Text'},
+          { property: 'score', title: 'Score' }
+        ]
+      };
         return (
           <div>
             <AppNavBar label="Messages" screen="app/messages" />
             <h1> Recent Messages </h1>
             <div>
             <MuiThemeProvider>
-              <MuiDataTable config={tableConfig} />
+              <MuiDataTable config={config} />
             </MuiThemeProvider>
             </div>
           </div>

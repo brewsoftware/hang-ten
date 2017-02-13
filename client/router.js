@@ -40,7 +40,7 @@ const UserIsAuthenticated = UserAuthWrapper({
 
   /* When signin is not pending. User is authenticated or not. */
   // determine if user is authenticated
-  predicate: user => user && user.isVerified,
+  predicate: user => true, //user && user.isVerified,
   // route to signin component
   failureRedirectPath: '/user/signin',
 
