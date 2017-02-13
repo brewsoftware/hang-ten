@@ -15,6 +15,7 @@ const handleSubmit = (values, dispatch) => new Promise((resolve, reject) => {
     .then((result) =>
     {
       dispatch(type:"LOGIN");
+      dispatch({type:"LOGIN"});
       resolve();
     })
     .catch((err) =>
