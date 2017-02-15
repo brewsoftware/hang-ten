@@ -38,10 +38,13 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     dispatch({type: 'MESSAGES_REFRESH', data:messages});
   },
   upsert: (message) => {
-    dispatch({type: 'MESSAGES_UPDATE', data:message})
+    dispatch({type: 'MESSAGES_UPDATE', data:message});
+  },
+  add: (message) => {
+    dispatch({type: 'MESSAGES_ADD', data:message});
   },
   remove: (message) => {
-    dispatche({type:'MESSAGES_DELETE', data:message})
+    dispatch({type:'MESSAGES_DELETE', data:message});
   }
 });
 
@@ -64,8 +67,8 @@ class Messages extends Component {
       subscription = query.subscribe();
 
       // create,enter,update,leave,delete
-      subscription.on('create', this.props.upsert);
-      subscription.on('enter', this.props.upsert);
+      subscription.on('create', this.props.add);
+      subscription.on('enter', this.props.add);
       subscription.on('update', this.props.upsert);
       subscription.on('leave', this.props.remove);
       subscription.on('delete', this.props.remove);
@@ -77,23 +80,18 @@ class Messages extends Component {
     }
 
     render() {
-      const config = {
-        paginated: true,
-        search: 'text',
-        data: this.props.message,
-        columns: [
-          { property: 'text', title: 'Text'},
-          { property: 'score', title: 'Score' }
-        ]
-      };
+      const listItems = this.props.message.map((message) =>
+        <li>{message.text}</li>
+      );
         return (
           <div>
             <AppNavBar label="Messages" screen="app/messages" />
             <h1> Recent Messages </h1>
             <div>
-            <MuiThemeProvider>
-              <MuiDataTable config={config} />
-            </MuiThemeProvider>
+            <hr />
+            <ul>
+              {listItems}
+            </ul>
             </div>
           </div>
         )
