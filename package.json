@@ -5,7 +5,7 @@
   "scripts": {
     "test": "npm run eslint && npm run mocha",
     "mocha": "mocha test/ --recursive",
-    "eslint": "eslint client/. common/. config/. server/. test/. --ext .js,.jsx",
+    "eslint": "eslint client/. common/. config/. server/. test/. --ext .js,.jsx --fix",
     "eslint:all": "eslint . --ext .js,.jsx",
     "prebuild": "rm -rf ./public/dist",
     "prebuild:dev": "rm -rf ./public/dist",
