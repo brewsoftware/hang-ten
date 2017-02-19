@@ -41,5 +41,4 @@ module.exports = function () {
   jobsService.after(hooks.after);
 
   debug('Config complete');
-  
 };

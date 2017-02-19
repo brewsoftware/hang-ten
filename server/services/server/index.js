@@ -41,6 +41,4 @@ module.exports = function () {
   serverService.after(hooks.after);
 
   debug('Config complete');
-
-
 };

@@ -41,6 +41,4 @@ module.exports = function () {
   messageService.after(hooks.after);
 
   debug('Config complete');
-
-
 };
