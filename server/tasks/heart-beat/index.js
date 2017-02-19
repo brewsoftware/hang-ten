@@ -4,33 +4,31 @@ const moment = require('moment');
 const Parse = require('parse/node').Parse;
 
 
-var heartBeatJob;
+let heartBeatJob;
 
-module.exports = function(){
-
+module.exports = function () {
   const app = this;
   const logger = require('../../utils/loggerProduction');
 
-  heartBeatJob = schedule.scheduleJob('15 * * * * *', function(){
+  heartBeatJob = schedule.scheduleJob('15 * * * * *', () => {
     // pump a message over to the messages API that we can pick up on the client.
     logger.info('Heart Beat: xxx');
 
-    var Message = Parse.Object.extend("Message");
-    var message = new Message();
-    message.message  = 'This is a heart beat';
+    const Message = Parse.Object.extend('Message');
+    const message = new Message();
+    message.message = 'This is a heart beat';
     message.time = moment().format();
     message.title = 'Heart Beat';
     message.audianceRole = 'Users';
 
     message.save(null, {
-      success:function(msg){
+      success(msg) {
         console.log('Successfully saved message');
       },
-      error:function(msg, err){
+      error(msg, err) {
         console.log(err);
       }
     });
-
   });
   // cleanup success messages after several days
-}
+};

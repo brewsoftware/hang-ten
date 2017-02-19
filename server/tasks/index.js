@@ -3,7 +3,7 @@ const debug = require('debug')('server:app');
 const serverRegistration = require('./server-registration');
 const heartBeat = require('./heart-beat');
 const Parse = require('parse/node').Parse;
-var config = require('config');
+const config = require('config');
 module.exports = function () {
   // 'function' needed as we use 'this'
   debug('Server Config');
@@ -12,5 +12,4 @@ module.exports = function () {
   Parse.initialize(config.parseServer.appId, config.parseServer.key);
   const app = this;
   heartBeat();
-
-}
+};
