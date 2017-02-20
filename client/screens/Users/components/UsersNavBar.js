@@ -91,8 +91,8 @@ const makeBarButtons = (screen) => {
             primaryText="Change roles (admin)"
           />
           <MenuItem
-              containerElement={<Link to="/messages" />}
-              primaryText="Messages"
+            containerElement={<Link to="/messages" />}
+            primaryText="Messages"
           />
           <MenuItem
             containerElement={<Link to="/" />}
@@ -126,8 +126,8 @@ const makeBarButtons = (screen) => {
             primaryText="Profile"
           />
           <MenuItem
-              containerElement={<Link to="/messages" />}
-              primaryText="Messages"
+            containerElement={<Link to="/messages" />}
+            primaryText="Messages"
           />
           <MenuItem
             containerElement={<Link to="/user/signin" />}

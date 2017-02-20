@@ -1,23 +1,23 @@
 
 import React, { PropTypes, Component } from 'react';
-import {Parse} from 'parse';
+import { Parse } from 'parse';
 
 import { connect } from 'react-redux';
 class AppWrapper extends Component {
 
-  componentWillMount(){
+  componentWillMount() {
     // check parse user, if logged in then redirect to app page
-    var currentUser = Parse.User.current();
+    const currentUser = Parse.User.current();
     if (currentUser) {
-      console.log('current: ' + currentUser.id);
+      console.log(`current: ${currentUser.id}`);
 
-      var query = new Parse.Query('User');
-      query.equalTo("objectId", currentUser.id);
+      const query = new Parse.Query('User');
+      query.equalTo('objectId', currentUser.id);
       query.get().then((data) => {
         console.log('get worked');
         console.log(data);
-      })
-      let subscription = query.subscribe();
+      });
+      const subscription = query.subscribe();
       subscription.on('update', (object) => {
         console.log('object updated');
         this.props.handleLogin(object);
@@ -30,9 +30,9 @@ class AppWrapper extends Component {
         // show the signup or login page
     }
   }
-  componentWillUnmount(){
+  componentWillUnmount() {
     // unsubscribe from parse updates
-    if(this.query){
+    if (this.query) {
       this.query.unsubscribe();
     }
   }
@@ -47,7 +47,6 @@ class AppWrapper extends Component {
     return (<div>
       {this.props.children}
     </div>);
-
   }
 }
 const mapStateToProps = (state) => ({
@@ -59,13 +58,13 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     dispatch({
       type: 'LOGOUT',
       text: 'Successful Logout'
-      });
+    });
   },
   handleLogin: (user) => {
     dispatch({
-      type:'LOGIN',
-      user: user
-    })
+      type: 'LOGIN',
+      user
+    });
   }
 });
 

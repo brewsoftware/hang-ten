@@ -45,12 +45,12 @@ const makeBarButtons = (screen) => {
           anchorOrigin={{ horizontal: 'right', vertical: 'top' }}
         >
           <MenuItem
-              containerElement={<Link to="/app" />}
-              primaryText="Home"
+            containerElement={<Link to="/app" />}
+            primaryText="Home"
           />
           <MenuItem
-              containerElement={<Link to="/messages" />}
-              primaryText="Messages"
+            containerElement={<Link to="/messages" />}
+            primaryText="Messages"
           />
           <MenuItem
             containerElement={<Link to="/user/profile" />}
@@ -71,12 +71,12 @@ const makeBarButtons = (screen) => {
           anchorOrigin={{ horizontal: 'right', vertical: 'top' }}
         >
           <MenuItem
-              containerElement={<Link to="/app" />}
-              primaryText="Home"
+            containerElement={<Link to="/app" />}
+            primaryText="Home"
           />
           <MenuItem
-              containerElement={<Link to="/messages" />}
-              primaryText="Messages"
+            containerElement={<Link to="/messages" />}
+            primaryText="Messages"
           />
           <MenuItem
             containerElement={<Link to="/user/profile" />}
