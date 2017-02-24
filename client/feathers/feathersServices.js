@@ -11,4 +11,4 @@ export const mapServicePathsToNames = {
 };
 
 // See feathers-reduxify-services::getServicesStatus. Order highest priority msg first.
-export const prioritizedListServices = ['auth', 'users', 'messages','verifyReset', 'logs'];
+export const prioritizedListServices = ['auth', 'users', 'messages', 'verifyReset', 'logs'];
