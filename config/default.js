@@ -133,10 +133,10 @@ module.exports = {
 
   // This is the subset of the config sent to the client
   clientConfig: defer(finalConfig => ({
-    parseClient:{
+    parseClient: {
       appId: finalConfig.parseServer.appId,
-      url:finalConfig.parseServer.url,
-      name:finalConfig.parseServer.name
+      url: finalConfig.parseServer.url,
+      name: finalConfig.parseServer.name
     },
     client: {
       defaultRoute: finalConfig.client.defaultRoute,
