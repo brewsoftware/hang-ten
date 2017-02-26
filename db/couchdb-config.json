@@ -1,0 +1,148 @@
+{
+  "adminInterface": "string",
+  "adminUI": "string",
+  "compressResponses": false,
+  "configServer": "string",
+  "CORS": {
+    "Origin": [
+      "string"
+    ],
+    "LoginOrigin": [
+      "string"
+    ],
+    "Headers": [
+      "string"
+    ],
+    "MaxAge": 0
+  },
+  "couchbaseKeepaliveInterval": 0,
+  "databases": {
+    "foo_db": {
+      "allow_empty_password": false,
+      "bucket": "string",
+      "import_docs": false,
+      "channel_index": {
+        "server": "string",
+        "bucket": "string"
+      },
+      "cache": {
+        "max_wait_pending": 0,
+        "max_num_pending": 0,
+        "max_wait_skipped": 0,
+        "enable_star_channel": false,
+        "channel_cache_max_length": 0,
+        "channel_cache_min_length": 0,
+        "channel_cache_expiry": 0
+      },
+      "event_handlers": {
+        "document_changed": [
+          {
+            "filter": "string",
+            "handler": "string",
+            "timeout": 0,
+            "url": "string"
+          }
+        ],
+        "max_processes": 0,
+        "wait_for_process": 0
+      },
+      "feed_type": "string",
+      "oidc": {
+        "default_provider": "string",
+        "providers": {
+          "foo_provider": {
+            "issuer": "string",
+            "client_id": "string",
+            "validation_key": "string",
+            "signing_method": "string",
+            "callback_url": "string",
+            "register": "string",
+            "disable_session": "string",
+            "scope": "string",
+            "include_access": "string",
+            "user_prefix": "string",
+            "discovery_url": "string",
+            "disable_cfg_validation": "string"
+          }
+        }
+      },
+      "offline": "string",
+      "password": "string",
+      "pool": "string",
+      "rev_cache_size": 0,
+      "revs_limit": 0,
+      "roles": {
+        "foo_role": {
+          "admin_channels": [
+            "string"
+          ]
+        }
+      },
+      "server": "string",
+      "sync": "string",
+      "username": "string",
+      "users": {
+        "foo_user": {
+          "password": "string",
+          "admin_channels": [
+            "string"
+          ],
+          "admin_roles": [
+            "string"
+          ],
+          "disabled": false
+        }
+      }
+    }
+  },
+  "facebook": {
+    "register": false
+  },
+  "interface": "string",
+  "log": [
+    "string"
+  ],
+  "logFilePath": "string",
+  "logging": {
+    "default": {
+      "logFilePath": "string",
+      "logKeys": [
+        "string"
+      ],
+      "logLevel": [
+        "string"
+      ],
+      "rotation": {
+        "maxsize": 0,
+        "maxage": 0,
+        "maxbackups": 0,
+        "localtime": false
+      }
+    }
+  },
+  "maxCouchbaseConnections": 0,
+  "maxCouchbaseOverflow": 0,
+  "maxFileDescriptors": 0,
+  "maxHeartbeat": 0,
+  "maxIncomingConnections": 0,
+  "pretty": false,
+  "profileInterface": "string",
+  "replications": [
+    {
+      "replication_id": "string",
+      "source": "string",
+      "target": "string",
+      "continuous": false,
+      "changes_feed_limit": "string",
+      "filter": "string",
+      "query_params": [
+        "string"
+      ]
+    }
+  ],
+  "serverReadTimeout": 0,
+  "serverWriteTimeout": 0,
+  "slowServerCallWarningThreshold": 0,
+  "SSLCert": "string",
+  "SSLKey": "string"
+}
