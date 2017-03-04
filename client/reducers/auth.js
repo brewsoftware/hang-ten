@@ -6,32 +6,31 @@ export default function auth(state = initialState, action) {
   switch (action.type) {
     case LOGIN:
       {
-        var res =
+        let res =
           {
             isAuthenticated: true,
             isSignedIn: true
           };
-        return res;
+          return res;
       }
     case LOGOUT:
       {
-        var res =
+        let res =
           {
-            isAuthenticated: false,
+            isAuthenticated: false
           };
-        return res;
+          return res;
       }
     case LOGIN_ERROR:
       {
-        var res =
+        let res =
           {
             isError: {
               message: action.text
             },
-            isAuthenticated: false,
+            isAuthenticated: false
           };
-        console.log(res);
-        return res;
+          return res;
       }
     default:
       {
