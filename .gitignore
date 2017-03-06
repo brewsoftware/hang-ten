@@ -70,3 +70,4 @@ coverage
 # nyc test coverage
 .nyc_output
 config/local-development.js
+config/local-*.js
